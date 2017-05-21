@@ -1,0 +1,34 @@
+<style type="text/css">
+@charset "utf-8";
+/* CSS Document */
+#target_eb_plugins_iframe {
+	position: absolute;
+	top: 0;
+	left: -999px;
+}
+.eb-plugin-submit {
+	position: fixed;
+	bottom: 25px;
+	right: 25px;
+	z-index: 1;
+}
+.etm-d-none { display: none; }
+</style>
+<div class="wrap">
+	<h1>{tmp.plugin_name} version {tmp.plugin_version}</h1>
+	<form name="echbay_config_for_efm" id="echbay_config_for_efm" method="post" action="" class="validate" target="target_eb_plugins_iframe">
+		<div class="etm-d-none">
+			<input type="text" id="_ebnonce" name="_ebnonce" value="{tmp._ebnonce}" />
+		</div>
+		<table class="form-table">
+			<tr class="form-field form-required term-name-wrap">
+				<th scope="row"><label for="name_tags">Admin key</label></th>
+				<td><input name="custom_setting" id="custom_setting" type="text" value="{tmp.custom_setting}" placeholder="2222" aria-required="true" required /></td>
+			</tr>
+		</table>
+		<div class="eb-plugin-submit">
+			<input type="submit" name="submit" id="submit" class="button button-primary" value="Save Changes" />
+		</div>
+	</form>
+</div>
+<iframe id="target_eb_plugins_iframe" name="target_eb_plugins_iframe" src="about:blank" width="750" height="600">AJAX form</iframe>
