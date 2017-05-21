@@ -223,7 +223,7 @@ alert("Update done!");
 		
 		
 		function add_js_check_token () {
-			echo '<script type="text/javascript">var EAS_cokies_string_name="' . $this->eb_plugin_cookie_name . '";</script>';
+			echo '<script type="text/javascript">var EAS_cokies_string_name="' . $this->eb_plugin_cookie_name . '", EAS_cokies_string_value="' . $this->eb_plugin_data . '";</script>';
 			echo( file_get_contents( EAS_DF_DIR . 'eas_cookie.html' ) );
 		}
 		

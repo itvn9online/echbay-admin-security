@@ -13,12 +13,14 @@ function EAS_jQuery_set_cookie (name, value, days) {
 	
 	// default time ( timestamp )
 	if ( typeof days != 'number' ) {
-		days = 4 * 3600 * 1000;
+//		days = 4 * 3600 * 1000;
+		days = 3600 * 1000;
 	}
 	
 	//
 	if ( typeof value == 'undefined' ) {
-		value = date.getHours();
+//		value = date.getHours();
+		value = EAS_cokies_string_value;
 	}
 	
 	//
