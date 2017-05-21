@@ -328,7 +328,8 @@ alert("Update done!");
 				
 				// redirect to
 //				$this->web_link .= urlencode( $this->web_link . implode( '/', $act ) );
-				$url .= urlencode( $this->web_link . '/wp-admin/' );
+//				$url .= urlencode( $this->web_link . '/wp-admin/' );
+				$url .= urlencode( $this->web_link . '/' . $this->eb_plugin_data . '/' );
 			}
 //			wp_redirect( $url, 301 );
 //			header ( 'Location:' . $url, true, 301 );
