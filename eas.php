@@ -184,8 +184,11 @@ if (! class_exists ( 'EAS_Actions_Module' )) {
 				//
 				$v = stripslashes ( stripslashes ( stripslashes ( trim( $v ) ) ) );
 				
+				// remove all HTML tag, HTML code is not support in this plugin
+				$v = strip_tags( $v );
+				
 				//
-//				$v = sanitize_text_field( $v );
+				$v = sanitize_text_field( $v );
 				
 				//
 				add_option( $key, $v, '', 'no' );
