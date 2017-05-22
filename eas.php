@@ -208,18 +208,21 @@ alert("Update done!");
 		function check_token_in_admin () {
 			
 //			print_r( $_COOKIE );
+			
+			// if this it old url wordpress admin
 			// if token cookie not found -> exist now
-			if ( ! isset( $_COOKIE[ $this->eb_plugin_cookie_name ] ) ) {
-				
-				// check 
-				$act = isset( $_SERVER['HTTP_REFERER'] ) ? $_SERVER['HTTP_REFERER'] : '';
-				
-				// exit if token false
-				if ( $this->check_token_in_string( $act ) == false ) {
-					// show 404 page (basic)
-					die( file_get_contents( EAS_DF_DIR . '404.html' ) ); exit();
-				}
-				
+			if ( $this->eb_plugin_data == 'wp-admin'
+			|| isset( $_COOKIE[ $this->eb_plugin_cookie_name ] ) ) {
+				return true;
+			}
+			
+			// check 
+			$act = isset( $_SERVER['HTTP_REFERER'] ) ? $_SERVER['HTTP_REFERER'] : '';
+			
+			// exit if token false
+			if ( $this->check_token_in_string( $act ) == false ) {
+				// show 404 page (basic)
+				die( file_get_contents( EAS_DF_DIR . '404.html' ) ); exit();
 			}
 			
 		}
