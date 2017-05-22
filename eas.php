@@ -93,7 +93,7 @@ if (! class_exists ( 'EAS_Actions_Module' )) {
 			$this->eb_plugin_root_dir = basename ( EAS_DF_DIR );
 			
 			// Get version by time file modife
-			$this->eb_plugin_media_version = filemtime( EAS_DF_DIR . 'admin.html' );
+			$this->eb_plugin_media_version = filemtime( EAS_DF_DIR . 'admin.js' );
 			
 			// URL to this plugin
 //			$this->eb_plugin_url = plugins_url () . '/' . EAS_DF_ROOT_DIR . '/';
@@ -236,6 +236,7 @@ alert("Update done!");
 			
 			// admin -> used real time version
 			$this->eb_plugin_media_version = time();
+			$this->get_web_link();
 			
 			
 			//
@@ -246,6 +247,8 @@ alert("Update done!");
 				
 				'plugin_name' => EAS_THIS_PLUGIN_NAME,
 				'plugin_version' => EAS_DF_VERSION,
+				
+				'web_link' => $this->web_link,
 				
 				'custom_setting' => $this->eb_plugin_data,
 			) );
@@ -275,26 +278,12 @@ alert("Update done!");
 		}
 		
 		
-		
-		
-		// get html for theme
-		function guest() {
-			// not 404 page -> return now
-			if ( ! is_404() ) {
-				return true;
+		function get_web_link () {
+			if ( $this->web_link != '' ) {
+				return $this->web_link;
 			}
 			
 			//
-			$act = isset( $_SERVER['REQUEST_URI'] ) ? $_SERVER['REQUEST_URI'] : '';
-			
-			// it false -> 404 page true
-			if ( $this->check_token_in_string( $act ) == false ) {
-				return true;
-			}
-			
-			// it true -> this it token page
-			
-			// get url
 			if ( defined('WP_SITEURL') ) {
 				$this->web_link = WP_SITEURL;
 			}
@@ -320,6 +309,33 @@ alert("Update done!");
 				$this->web_link = substr( $this->web_link, 0, -1 );
 			}
 //			echo $this->web_link; exit();
+			
+			//
+			return $this->web_link;
+		}
+		
+		
+		
+		
+		// get html for theme
+		function guest() {
+			// not 404 page -> return now
+			if ( ! is_404() ) {
+				return true;
+			}
+			
+			//
+			$act = isset( $_SERVER['REQUEST_URI'] ) ? $_SERVER['REQUEST_URI'] : '';
+			
+			// it false -> 404 page true
+			if ( $this->check_token_in_string( $act ) == false ) {
+				return true;
+			}
+			
+			// it true -> this it token page
+			
+			// get current url
+			$this->get_web_link();
 			
 			// go to admin if login
 			if ( is_user_logged_in() ) {

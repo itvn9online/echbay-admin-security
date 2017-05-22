@@ -16,8 +16,10 @@
 		</div>
 		<table class="form-table">
 			<tr class="form-field form-required term-name-wrap">
-				<th scope="row"><label for="name_tags">Admin key</label></th>
-				<td><input name="custom_setting" id="custom_setting" type="text" value="{tmp.custom_setting}" placeholder="2222" aria-required="true" required /></td>
+				<th scope="row"><label for="name_tags">Admin URL</label></th>
+				<td>{tmp.web_link}/
+					<input name="custom_setting" id="custom_setting" type="text" value="{tmp.custom_setting}" placeholder="2222" aria-required="true" required maxlength="255" style="max-width:250px;" />
+					<p class="description">Enter a new URL, use instead to <strong>wp-admin</strong> wordpress. Default: <strong>2222</strong></p></td>
 			</tr>
 			<tr class="form-field form-required term-name-wrap">
 				<th scope="row">&nbsp;</th>

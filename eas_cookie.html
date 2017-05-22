@@ -48,7 +48,18 @@ function EAS_jQuery_get_cookie (name) {
 //console.log( EAS_jQuery_get_cookie( EAS_cokies_string_name ) );
 
 //
-EAS_jQuery_set_cookie( EAS_cokies_string_name );
+var eas_auto_expires_token_admin_cookie = null;
+function EAS_jQuery_while_set_cookie () {
+	EAS_jQuery_set_cookie( EAS_cokies_string_name );
+	
+	// auto renew token
+	clearTimeout( eas_auto_expires_token_admin_cookie );
+	eas_auto_expires_token_admin_cookie = setTimeout(function () {
+		console.log( 'EchBay Admin Security auto renew token.' );
+		EAS_jQuery_while_set_cookie();
+	}, 20 * 60 * 1000 );
+}
+EAS_jQuery_while_set_cookie();
 console.log( 'EchBay Admin Security is running... thanks for choose us.' );
 
 
